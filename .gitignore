@@ -1,0 +1,38 @@
+# Build 
+bin/
+obj/
+
+# User files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+packages/
+
+# Logs
+*.log
+
+# OS 
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Publish
+publish/
+
+# Secrets
+appsettings.Production.json
+appsettings.Local.json
+appsettings.Development.json
+
+# User Secrets
+secrets.json
