@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartTaskManager.Data;
+using SmartTaskManager.Interfaces;
 
 namespace SmartTaskManager.Controllers
 {
     public class RoleController : Controller
     {
-        private readonly SmartTaskManagerDbContext _context;
+        private readonly IRoleService _roleService;
 
-        public RoleController(SmartTaskManagerDbContext context)
+        public RoleController(IRoleService roleService)
         {
-            _context = context;
+            _roleService = roleService;
         }
 
         public IActionResult Index()
         {
-            var roles = _context.RoleMasters.ToList();
+            var roles = _roleService.GetAllRoles();
+
             return View(roles);
         }
     }

@@ -8,12 +8,9 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Helpers\" />
     <Folder Include="Constants\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

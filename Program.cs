@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SmartTaskManager.Data;
+using SmartTaskManager.Interfaces;
+using SmartTaskManager.Repositories;
+using SmartTaskManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SmartTaskManagerDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
+builder.Services.AddScoped<IRoleService, RoleService>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
