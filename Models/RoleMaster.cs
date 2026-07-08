@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartTaskManager.Models
 {
+    [Table("RoleMaster")]
     public class RoleMaster
     {   //Entity Framework maps this property to that SQL column
         [Key]

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartTaskManager.Interfaces;
 using SmartTaskManager.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace SmartTaskManager.Controllers
 {
@@ -34,7 +35,21 @@ namespace SmartTaskManager.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index", "Dashboard");
+            HttpContext.Session.SetInt32(
+                "UserId",
+                user.UserId);
+
+            HttpContext.Session.SetString(
+                "UserName",
+                user.FirstName);
+
+            HttpContext.Session.SetString(
+                "Role",
+                user.Role?.RoleName ?? "");
+
+            return RedirectToAction(
+                "Index",
+                "Dashboard");
         }
     }
 }

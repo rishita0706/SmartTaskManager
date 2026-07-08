@@ -1,4 +1,5 @@
-﻿using SmartTaskManager.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartTaskManager.Data;
 using SmartTaskManager.Interfaces;
 using SmartTaskManager.Models;
 
@@ -16,6 +17,7 @@ namespace SmartTaskManager.Repositories
         public UserMaster? GetUserByEmail(string email)
         {
             return _context.UserMasters
+                .Include(u => u.Role)
                 .FirstOrDefault(u => u.Email == email);
         }
     }
