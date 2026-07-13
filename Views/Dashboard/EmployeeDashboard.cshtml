@@ -1,25 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "ManagerDashboard";
+    ViewData["Title"] = "EmployeeDashboard";
 }
 
-<h1>Manager Dashboard</h1>
+<h1>Employee Dashboard</h1>
 
 <div class="row">
 
     <div class="col-md-3">
         <div class="card shadow-sm mb-3">
             <div class="card-body">
-                <h5>Tasks Assigned By Me</h5>
-                <h2>@ViewBag.TasksAssignedByMe</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card shadow-sm mb-3">
-            <div class="card-body">
-                <h5>Pending Tasks</h5>
-                <h2>@ViewBag.PendingTasks</h2>
+                <h5>My Tasks</h5>
+                <h2>@ViewBag.MyTasks</h2>
             </div>
         </div>
     </div>
@@ -36,8 +27,17 @@
     <div class="col-md-3">
         <div class="card shadow-sm mb-3">
             <div class="card-body">
-                <h5>My Team Members</h5>
-                <h2>@ViewBag.MyTeamMembers</h2>
+                <h5>Due Tasks</h5>
+                <h2>@ViewBag.DueTasks</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h5>Recent Comments</h5>
+                <h2>@ViewBag.RecentComments</h2>
             </div>
         </div>
     </div>
