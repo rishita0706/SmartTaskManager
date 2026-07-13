@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartTaskManager.Models
 {
-    [Table("Department Master")]
+    [Table("DepartmentMaster")]
     public class DepartmentMaster
     {
         [Key]
