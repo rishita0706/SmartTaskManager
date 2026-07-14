@@ -1,0 +1,66 @@
+﻿@model SmartTaskManager.Models.UserMaster
+
+<h2>Create User</h2>
+
+<form asp-action="Create">
+
+    <div class="mb-3">
+        <label>First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <input asp-for="PasswordHash" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Role</label>
+        <select asp-for="RoleId"
+                asp-items="ViewBag.Roles"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Department</label>
+        <select asp-for="DepartmentId"
+                asp-items="ViewBag.Departments"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Manager</label>
+        <select asp-for="RoleId"
+                asp-items="ViewBag.Managers"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <input asp-for="IsActive" type="checkbox" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Create User
+    </button>
+
+</form>

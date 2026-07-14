@@ -40,7 +40,9 @@ namespace SmartTaskManager.Repositories
 
             if (user != null)
             {
-                _context.UserMasters.Remove(user);
+                user.IsActive = false;
+
+                _context.UserMasters.Update(user);
             }
         }
 
