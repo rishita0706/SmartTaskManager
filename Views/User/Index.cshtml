@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SmartTaskManager.Models.UserMaster>
+
+<h1>User Management</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role ID</th>
+            <th>Department ID</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.FirstName</td>
+                <td>@user.Email</td>
+                <td>@user.RoleId</td>
+                <td>@user.DepartmentId</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
