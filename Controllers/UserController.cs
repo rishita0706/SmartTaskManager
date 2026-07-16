@@ -12,11 +12,13 @@ namespace SmartTaskManager.Controllers
     {
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
+        private readonly IDepartmentService _departmentService;
 
-        public UserController(IUserService userService, IRoleService roleService)
+        public UserController(IUserService userService, IRoleService roleService, IDepartmentService departmentService)
         {
             _userService = userService;
             _roleService = roleService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index() => View(_userService.GetAllUsers());
@@ -79,7 +81,8 @@ namespace SmartTaskManager.Controllers
             var managers = _userService.GetAllUsers().Where(u => u.RoleId == RoleNames.ManagerId);
             ViewBag.Managers = new SelectList(managers, "UserId", "FirstName");
 
-            // Departments still need a service method — see note below.
+            ViewBag.Departments = new SelectList(
+                _departmentService.GetAllDepartments(), "DepartmentId", "DepartmentName", selectedDeptId);
         }
     }
 }
