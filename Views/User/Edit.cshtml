@@ -1,4 +1,4 @@
-﻿@model SmartTaskManager.Models.UserMaster
+﻿@model SmartTaskManager.ViewModels.UserEditViewModel
 
 <form asp-action="Edit">
 
@@ -25,8 +25,8 @@
     </div>
 
     <div class="mb-3">
-        <label>Password</label>
-        <input asp-for="PasswordHash" class="form-control" />
+        <label>New Password (leave blank to keep current)</label>
+        <input asp-for="NewPassword" type="password" class="form-control" />
     </div>
 
     <div class="mb-3">
