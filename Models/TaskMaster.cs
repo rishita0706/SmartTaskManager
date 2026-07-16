@@ -41,6 +41,10 @@ namespace SmartTaskManager.Models
         public UserMaster? AssignedEmployee { get; set; }
 
         [ForeignKey(nameof(AssignedBy))]
+        public int? DepartmentId { get; set; }
+
+        [ForeignKey(nameof(DepartmentId))]
+        public DepartmentMaster? Department { get; set; }
         public UserMaster? AssignedManager { get; set; }
 
         public ICollection<TaskComment> Comments { get; set; } = new List<TaskComment>();

@@ -78,6 +78,13 @@ namespace SmartTaskManager.Data
                 .HasForeignKey(t => t.AssignedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Task -> Department
+            modelBuilder.Entity<TaskMaster>()
+                .HasOne(t => t.Department)
+                .WithMany()
+                .HasForeignKey(t => t.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             // Comment -> Task
             modelBuilder.Entity<TaskComment>()
                 .HasOne(c => c.Task)
