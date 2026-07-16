@@ -20,6 +20,12 @@
         <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-control"></select>
     </div>
     <div class="mb-3">
+        <label>Priority</label>
+        <select asp-for="PriorityId" asp-items="ViewBag.Priorities" class="form-control">
+            <option value="">-- Select Priority --</option>
+        </select>
+    </div>
+    <div class="mb-3">
         <label>Due Date</label>
         <input asp-for="DueDate" type="date" class="form-control" />
     </div>

@@ -13,12 +13,15 @@ namespace SmartTaskManager.Controllers
         private readonly ITaskService _taskService;
         private readonly IUserService _userService;
         private readonly IDepartmentService _departmentService;
+        private readonly IPriorityService _priorityService;
 
-        public TaskController(ITaskService taskService, IUserService userService, IDepartmentService departmentService)
+        public TaskController(ITaskService taskService, IUserService userService,
+            IDepartmentService departmentService, IPriorityService priorityService)
         {
             _taskService = taskService;
             _userService = userService;
             _departmentService = departmentService;
+            _priorityService = priorityService;
         }
 
         // Role-aware list: Admin sees all, Manager sees what they assigned, Employee sees what's assigned to them.
@@ -93,7 +96,7 @@ namespace SmartTaskManager.Controllers
             var employees = _userService.GetAllUsers().Where(u => u.RoleId == RoleNames.EmployeeId);
             ViewBag.Employees = new SelectList(employees, "UserId", "FirstName");
             ViewBag.Departments = new SelectList(_departmentService.GetAllDepartments(), "DepartmentId", "DepartmentName");
-            // Priority dropdown needs IPriorityService — same shape as Role/Department.
+            ViewBag.Priorities = new SelectList(_priorityService.GetAllPriorities(), "PriorityId", "PriorityName");
         }
     }
 }
