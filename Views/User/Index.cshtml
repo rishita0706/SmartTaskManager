@@ -35,9 +35,8 @@
 
                 <td>@user.Email</td>
 
-                <td>@user.RoleId</td>
-
-                <td>@user.DepartmentId</td>
+                <td>@user.Role?.RoleName</td>
+                <td>@user.Department?.DepartmentName</td>
 
                 <td>
                     @if (user.IsActive)

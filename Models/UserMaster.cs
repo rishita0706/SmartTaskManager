@@ -36,6 +36,11 @@ namespace SmartTaskManager.Models
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
+        public int? ManagerId { get; set; }
+
+        [ForeignKey(nameof(ManagerId))]
+        public UserMaster? Manager { get; set; }
+
         [ForeignKey(nameof(RoleId))]
         public RoleMaster? Role { get; set; }
 

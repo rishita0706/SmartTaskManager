@@ -14,15 +14,16 @@ namespace SmartTaskManager.Repositories
             _context = context;
         }
 
-        public IEnumerable<UserMaster> GetAllUsers()
-        {
-            return _context.UserMasters.ToList();
-        }
+        private IQueryable<UserMaster> WithIncludes() =>
+            _context.UserMasters
+                .Include(u => u.Role)
+                .Include(u => u.Department)
+                .Include(u => u.Manager);
 
-        public UserMaster? GetUserById(int id)
-        {
-            return _context.UserMasters.Find(id);
-        }
+        public IEnumerable<UserMaster> GetAllUsers() => WithIncludes().ToList();
+
+        public UserMaster? GetUserById(int id) =>
+            WithIncludes().FirstOrDefault(u => u.UserId == id);
 
         public void AddUser(UserMaster user)
         {
@@ -41,7 +42,6 @@ namespace SmartTaskManager.Repositories
             if (user != null)
             {
                 user.IsActive = false;
-
                 _context.UserMasters.Update(user);
             }
         }

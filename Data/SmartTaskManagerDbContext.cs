@@ -43,6 +43,13 @@ namespace SmartTaskManager.Data
                 .HasForeignKey(u => u.DepartmentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // User -> Manager (self-referencing)
+            modelBuilder.Entity<UserMaster>()
+                .HasOne(u => u.Manager)
+                .WithMany()
+                .HasForeignKey(u => u.ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             // Task -> Priority
             modelBuilder.Entity<TaskMaster>()
                 .HasOne(t => t.Priority)

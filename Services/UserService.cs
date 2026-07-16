@@ -1,4 +1,5 @@
-﻿using SmartTaskManager.Interfaces;
+﻿using SmartTaskManager.Helpers;
+using SmartTaskManager.Interfaces;
 using SmartTaskManager.Models;
 
 namespace SmartTaskManager.Services
@@ -12,24 +13,24 @@ namespace SmartTaskManager.Services
             _userRepository = userRepository;
         }
 
-        public IEnumerable<UserMaster> GetAllUsers()
-        {
-            return _userRepository.GetAllUsers();
-        }
+        public IEnumerable<UserMaster> GetAllUsers() => _userRepository.GetAllUsers();
 
-        public UserMaster? GetUserById(int id)
-        {
-            return _userRepository.GetUserById(id);
-        }
+        public UserMaster? GetUserById(int id) => _userRepository.GetUserById(id);
 
         public void AddUser(UserMaster user)
         {
+            user.PasswordHash = PasswordHelper.Hash(user, user.PasswordHash);
             _userRepository.AddUser(user);
             _userRepository.Save();
         }
 
         public void UpdateUser(UserMaster user)
         {
+            if (!string.IsNullOrWhiteSpace(user.PasswordHash))
+            {
+                user.PasswordHash = PasswordHelper.Hash(user, user.PasswordHash);
+            }
+
             _userRepository.UpdateUser(user);
             _userRepository.Save();
         }
@@ -43,14 +44,22 @@ namespace SmartTaskManager.Services
         public UserMaster? ValidateUser(string email, string password)
         {
             var user = _userRepository.GetUserByEmail(email);
+            if (user == null) return null;
 
-            if (user == null)
-                return null;
+            if (PasswordHelper.Verify(user, user.PasswordHash, password))
+                return user;
 
-            if (user.PasswordHash != password)
-                return null;
+            // Legacy fallback: account created before password hashing was introduced.
+            // Auto-migrate it to a proper hash on this successful login.
+            if (PasswordHelper.IsLegacyPlainTextMatch(user.PasswordHash, password))
+            {
+                user.PasswordHash = PasswordHelper.Hash(user, password);
+                _userRepository.UpdateUser(user);
+                _userRepository.Save();
+                return user;
+            }
 
-            return user;
+            return null;
         }
     }
 }

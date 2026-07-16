@@ -47,9 +47,10 @@
 
     <div class="mb-3">
         <label>Manager</label>
-        <select asp-for="RoleId"
+        <select asp-for="ManagerId"
                 asp-items="ViewBag.Managers"
                 class="form-control">
+            <option value="">-- None --</option>
         </select>
     </div>
 
