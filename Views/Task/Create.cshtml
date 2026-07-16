@@ -1,0 +1,27 @@
+﻿@model SmartTaskManager.Models.TaskMaster
+
+<h2>Create Task</h2>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Assign To</label>
+        <select asp-for="AssignedTo" asp-items="ViewBag.Employees" class="form-control"></select>
+    </div>
+    <div class="mb-3">
+        <label>Department</label>
+        <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-control"></select>
+    </div>
+    <div class="mb-3">
+        <label>Due Date</label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Task</button>
+</form>

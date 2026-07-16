@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartTaskManager.Models
 {
+    [Table("StatusMaster")]
     public class StatusMaster
     {
         [Key]

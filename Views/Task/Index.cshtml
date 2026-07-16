@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SmartTaskManager.Models.TaskMaster>
+@{
+    var role = Context.Session.GetString("Role");
+}
+
+<h2>Tasks</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Due Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Title</td>
+                <td>@t.Priority?.PriorityName</td>
+                <td>@t.Status?.StatusName</td>
+                <td>@t.AssignedEmployee?.FirstName</td>
+                <td>@t.DueDate</td>
+                <td>
+                    @if (role == "Employee")
+                    {
+                        <a asp-action="UpdateStatus" asp-route-id="@t.TaskId" class="btn btn-sm btn-warning">Update Status</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (role == "Admin" || role == "Manager")
+{
+    <a asp-action="Create" class="btn btn-primary">Create Task</a>
+}
